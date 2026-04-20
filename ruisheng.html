@@ -1,0 +1,1268 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>瑞生管理顾问</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #1a1714;
+    --ink-mid: #4a4640;
+    --ink-light: #8a8480;
+    --cream: #f6f2eb;
+    --cream-dark: #ede8df;
+    --gold: #b07d3a;
+    --gold-light: #d4a55e;
+    --red: #8b2c2c;
+    --white: #fdfbf8;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Noto Sans SC', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 5vw;
+    background: rgba(246,242,235,0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(176,125,58,0.2);
+  }
+
+  .nav-logo {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--ink);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    color: var(--ink-mid);
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 8rem 5vw 5rem;
+    gap: 4rem;
+  }
+
+  .hero-text { max-width: 520px; }
+
+  .hero-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.8rem;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 1.5px;
+    background: var(--gold);
+  }
+
+  .hero-eyebrow span {
+    font-size: 0.78rem;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    font-weight: 500;
+  }
+
+  .hero-title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: clamp(2.4rem, 4.5vw, 3.6rem);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 0.03em;
+    color: var(--ink);
+    margin-bottom: 1rem;
+  }
+
+  .hero-title em {
+    font-style: normal;
+    color: var(--gold);
+  }
+
+  .hero-subtitle {
+    font-size: 1.05rem;
+    color: var(--ink-mid);
+    line-height: 1.9;
+    margin-bottom: 2.5rem;
+    max-width: 420px;
+    font-weight: 300;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    padding: 0.85rem 2.2rem;
+    background: var(--ink);
+    color: var(--cream);
+    text-decoration: none;
+    font-size: 0.88rem;
+    letter-spacing: 0.15em;
+    font-weight: 500;
+    transition: background 0.25s, transform 0.15s;
+    cursor: pointer;
+    border: none;
+  }
+
+  .btn-primary:hover {
+    background: var(--gold);
+    transform: translateY(-1px);
+  }
+
+  .btn-secondary {
+    display: inline-block;
+    padding: 0.85rem 2.2rem;
+    border: 1.5px solid var(--gold);
+    color: var(--gold);
+    text-decoration: none;
+    font-size: 0.88rem;
+    letter-spacing: 0.15em;
+    font-weight: 500;
+    transition: all 0.25s;
+    cursor: pointer;
+    background: transparent;
+  }
+
+  .btn-secondary:hover {
+    background: var(--gold);
+    color: var(--white);
+    transform: translateY(-1px);
+  }
+
+  /* ── HERO VISUAL ── */
+  .hero-visual {
+    position: relative;
+    height: 580px;
+  }
+
+  .hero-img-main {
+    position: absolute;
+    top: 0; right: 0;
+    width: 85%;
+    height: 460px;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+
+  .hero-img-accent {
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 52%;
+    height: 240px;
+    object-fit: cover;
+    border: 5px solid var(--cream);
+  }
+
+  /* Placeholder image blocks (replace with real photos) */
+  .img-placeholder {
+    background: var(--cream-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 0.5rem;
+    color: var(--ink-light);
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+  }
+
+  .img-placeholder .photo-icon {
+    width: 40px;
+    height: 40px;
+    opacity: 0.4;
+  }
+
+  .hero-badge {
+    position: absolute;
+    top: 2rem;
+    left: -1rem;
+    background: var(--gold);
+    color: var(--white);
+    padding: 0.6rem 1.2rem;
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    font-weight: 500;
+  }
+
+  .stat-float {
+    position: absolute;
+    bottom: 3.5rem;
+    right: 0.5rem;
+    background: var(--ink);
+    color: var(--cream);
+    padding: 1.2rem 1.6rem;
+    text-align: center;
+  }
+
+  .stat-num {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--gold-light);
+    display: block;
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    color: var(--cream);
+    opacity: 0.7;
+    margin-top: 0.3rem;
+    display: block;
+  }
+
+  /* ── SECTION SHARED ── */
+  section { padding: 6rem 5vw; }
+
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .section-label::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 1.5px;
+    background: var(--gold);
+  }
+
+  .section-label span {
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+
+  .section-title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--ink);
+  }
+
+  /* ── SERVICES ── */
+  .services { background: var(--white); }
+
+  .services-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .services-head {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: end;
+    margin-bottom: 4rem;
+  }
+
+  .services-desc {
+    font-size: 0.95rem;
+    color: var(--ink-mid);
+    line-height: 1.9;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2px;
+  }
+
+  .service-card {
+    background: var(--cream);
+    padding: 2.5rem 2rem;
+    position: relative;
+    transition: background 0.3s;
+    cursor: default;
+  }
+
+  .service-card:hover { background: var(--ink); }
+
+  .service-card:hover .service-num,
+  .service-card:hover .service-name,
+  .service-card:hover .service-text { color: var(--cream); }
+
+  .service-card:hover .service-icon-wrap { border-color: rgba(255,255,255,0.15); }
+
+  .service-card:hover .service-icon-wrap svg { stroke: var(--gold-light); }
+
+  .service-num {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    display: block;
+    transition: color 0.3s;
+  }
+
+  .service-icon-wrap {
+    width: 48px;
+    height: 48px;
+    border: 1.5px solid var(--cream-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.2rem;
+    transition: border-color 0.3s;
+  }
+
+  .service-icon-wrap svg {
+    width: 22px;
+    height: 22px;
+    stroke: var(--ink-mid);
+    fill: none;
+    stroke-width: 1.5;
+    transition: stroke 0.3s;
+  }
+
+  .service-name {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 0.8rem;
+    transition: color 0.3s;
+  }
+
+  .service-text {
+    font-size: 0.88rem;
+    color: var(--ink-mid);
+    line-height: 1.85;
+    transition: color 0.3s;
+  }
+
+  /* ── PHOTOS ── */
+  .photos-section { background: var(--cream-dark); padding: 5rem 5vw; }
+
+  .photos-inner { max-width: 1100px; margin: 0 auto; }
+
+  .photos-head { margin-bottom: 3rem; }
+
+  .photos-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: 280px 200px;
+    gap: 6px;
+  }
+
+  .photo-wrap {
+    overflow: hidden;
+    position: relative;
+  }
+
+  .photo-wrap:first-child {
+    grid-row: 1 / 3;
+  }
+
+  .photo-wrap img,
+  .photo-wrap .img-placeholder {
+    width: 100%;
+    height: 100%;
+    display: block;
+    transition: transform 0.5s ease;
+  }
+
+  .photo-wrap:hover img { transform: scale(1.04); }
+
+  .photo-caption {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 0.8rem 1rem;
+    background: linear-gradient(transparent, rgba(26,23,20,0.7));
+    color: var(--cream);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .photo-wrap:hover .photo-caption { opacity: 1; }
+
+  /* ── TESTIMONIAL ── */
+  .testimonial-section { background: var(--ink); padding: 6rem 5vw; }
+
+  .testimonial-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .testimonial-section .section-label::before { background: var(--gold); }
+  .testimonial-section .section-label { justify-content: center; }
+  .testimonial-section .section-label span { color: var(--gold-light); }
+
+  .testimonial-section .section-title { color: var(--cream); margin-bottom: 4rem; }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    text-align: left;
+  }
+
+  .testimonial-card {
+    border: 1px solid rgba(176,125,58,0.25);
+    padding: 2rem;
+    position: relative;
+  }
+
+  .quote-mark {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 4rem;
+    line-height: 1;
+    color: var(--gold);
+    opacity: 0.4;
+    margin-bottom: -1rem;
+    display: block;
+  }
+
+  .quote-text {
+    font-size: 0.95rem;
+    color: rgba(246,242,235,0.85);
+    line-height: 1.9;
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+  }
+
+  .quote-author {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .author-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--gold);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .author-info strong {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--cream);
+    font-weight: 500;
+    letter-spacing: 0.05em;
+  }
+
+  .author-info span {
+    font-size: 0.78rem;
+    color: rgba(246,242,235,0.5);
+  }
+
+  .results-strip {
+    margin-top: 3.5rem;
+    padding-top: 3rem;
+    border-top: 1px solid rgba(176,125,58,0.2);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+
+  .result-item { text-align: center; }
+
+  .result-num {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--gold-light);
+    display: block;
+  }
+
+  .result-desc {
+    font-size: 0.78rem;
+    color: rgba(246,242,235,0.55);
+    letter-spacing: 0.1em;
+    margin-top: 0.25rem;
+    display: block;
+  }
+
+  /* ── CONTACT ── */
+  .contact-section { background: var(--cream); padding: 6rem 5vw; }
+
+  .contact-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: start;
+  }
+
+  .contact-info { max-width: 440px; }
+
+  .contact-info .section-title { margin-bottom: 1.5rem; }
+
+  .contact-info p {
+    font-size: 0.95rem;
+    color: var(--ink-mid);
+    line-height: 1.9;
+    margin-bottom: 2.5rem;
+  }
+
+  .contact-details { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
+
+  .contact-details li {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.88rem;
+    color: var(--ink-mid);
+  }
+
+  .contact-details .detail-label {
+    font-weight: 500;
+    color: var(--ink);
+    min-width: 48px;
+  }
+
+  .contact-form-wrap {
+    background: var(--white);
+    padding: 2.5rem;
+  }
+
+  .form-title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 1.8rem;
+    letter-spacing: 0.05em;
+  }
+
+  .form-group { margin-bottom: 1.2rem; }
+
+  .form-group label {
+    display: block;
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    color: var(--ink-mid);
+    margin-bottom: 0.5rem;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--cream-dark);
+    background: var(--cream);
+    font-family: 'Noto Sans SC', sans-serif;
+    font-size: 0.9rem;
+    color: var(--ink);
+    outline: none;
+    transition: border-color 0.2s;
+    appearance: none;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--gold);
+    background: var(--white);
+  }
+
+  .form-group textarea { height: 100px; resize: vertical; }
+
+  .btn-submit {
+    width: 100%;
+    padding: 1rem;
+    background: var(--ink);
+    color: var(--cream);
+    border: none;
+    font-family: 'Noto Sans SC', sans-serif;
+    font-size: 0.88rem;
+    letter-spacing: 0.18em;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.25s;
+    margin-top: 0.5rem;
+  }
+
+  .btn-submit:hover { background: var(--gold); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    padding: 2rem 5vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(176,125,58,0.15);
+  }
+
+  .footer-logo {
+    font-family: 'Noto Serif SC', serif;
+    color: var(--cream);
+    font-size: 0.95rem;
+    letter-spacing: 0.08em;
+  }
+
+  .footer-copy {
+    font-size: 0.78rem;
+    color: rgba(246,242,235,0.4);
+    letter-spacing: 0.08em;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-text > * {
+    animation: fadeUp 0.7s ease both;
+  }
+  .hero-eyebrow { animation-delay: 0.05s; }
+  .hero-title   { animation-delay: 0.15s; }
+  .hero-subtitle { animation-delay: 0.25s; }
+  .hero-cta     { animation-delay: 0.35s; }
+
+  .hero-visual {
+    animation: fadeUp 0.9s 0.2s ease both;
+  }
+
+  /* ── MOBILE BOTTOM CTA BAR ── */
+  .mobile-cta-bar {
+    display: none;
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    z-index: 200;
+    background: var(--ink);
+    padding: 0.9rem 5vw;
+    gap: 0.75rem;
+    border-top: 1px solid rgba(176,125,58,0.3);
+  }
+  .mobile-cta-bar a {
+    flex: 1;
+    text-align: center;
+    padding: 0.75rem 0;
+    font-size: 0.85rem;
+    letter-spacing: 0.12em;
+    font-weight: 500;
+    text-decoration: none;
+    font-family: 'Noto Sans SC', sans-serif;
+  }
+  .mobile-cta-bar .m-btn-primary {
+    background: var(--gold);
+    color: var(--white);
+  }
+  .mobile-cta-bar .m-btn-secondary {
+    border: 1px solid rgba(176,125,58,0.5);
+    color: var(--gold-light);
+  }
+  @media (max-width: 900px) {
+    .services-head { grid-template-columns: 1fr; gap: 1.5rem; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
+  }
+
+  /* ── MOBILE ── */
+  @media (max-width: 680px) {
+
+    /* Nav: hamburger-style, show logo + CTA only */
+    nav {
+      padding: 1rem 5vw;
+    }
+    .nav-links {
+      display: none;
+    }
+    .nav-logo { font-size: 0.95rem; }
+
+    /* Floating mobile CTA bar at bottom */
+    .mobile-cta-bar {
+      display: flex !important;
+    }
+
+    /* Hero: full-width photo top, text below */
+    .hero {
+      grid-template-columns: 1fr;
+      min-height: auto;
+      padding: 0;
+      gap: 0;
+    }
+    .hero-visual {
+      order: -1;
+      height: 70vw;
+      max-height: 360px;
+      width: 100%;
+      position: relative;
+    }
+    .hero-img-main {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+    }
+    .hero-img-accent { display: none; }
+    .hero-badge { display: none; }
+    .stat-float {
+      bottom: 1rem;
+      right: 1rem;
+      padding: 0.8rem 1.1rem;
+    }
+    .stat-num { font-size: 1.5rem; }
+    .stat-label { font-size: 0.65rem; }
+
+    .hero-text {
+      padding: 2rem 5vw 5rem;
+      max-width: 100%;
+    }
+    .hero-eyebrow { margin-bottom: 1rem; }
+    .hero-eyebrow span { font-size: 0.68rem; }
+    .hero-title { font-size: 2rem; margin-bottom: 0.8rem; }
+    .hero-subtitle { font-size: 0.92rem; margin-bottom: 1.8rem; }
+    .hero-cta { gap: 0.75rem; }
+    .btn-primary, .btn-secondary {
+      padding: 0.8rem 1.6rem;
+      font-size: 0.82rem;
+    }
+
+    /* About: stack vertically */
+    .about-grid {
+      grid-template-columns: 1fr !important;
+      gap: 2rem !important;
+    }
+    .about-portrait {
+      max-width: 220px;
+      margin: 0 auto;
+    }
+    .about-portrait .name-card {
+      right: -0.5rem !important;
+      bottom: -1rem !important;
+    }
+
+    /* Services */
+    section { padding: 3.5rem 5vw; }
+    .services-grid {
+      grid-template-columns: 1fr;
+      gap: 2px;
+    }
+    .service-card { padding: 1.8rem 1.4rem; }
+
+    /* Photos mobile: 2-col grid, full-width group banner */
+    .photos-grid-outer > div:first-child {
+      display: grid !important;
+      grid-template-columns: 1fr 1fr !important;
+      height: auto !important;
+      gap: 4px !important;
+      margin-bottom: 4px !important;
+    }
+    .photos-grid-outer > div:first-child > div:first-child {
+      height: 44vw !important;
+    }
+    .photos-grid-outer > div:first-child > div:last-child {
+      display: grid !important;
+      grid-template-rows: 1fr 1fr !important;
+      height: 44vw !important;
+      gap: 4px !important;
+    }
+    .photos-grid-outer > div:last-child {
+      height: 28vw !important;
+    }
+
+    /* Video */
+    .video-section { padding: 3.5rem 5vw !important; }
+
+    /* Testimonials */
+    .testimonial-section { padding: 3.5rem 5vw; }
+    .testimonial-card { padding: 1.5rem; }
+    .quote-mark { font-size: 3rem; }
+    .quote-text { font-size: 0.88rem; }
+    .results-strip {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.5rem;
+      margin-top: 2rem;
+      padding-top: 2rem;
+    }
+    .result-num { font-size: 1.6rem; }
+    .result-desc { font-size: 0.68rem; }
+
+    /* Contact */
+    .contact-section { padding: 3.5rem 5vw 7rem; }
+    .contact-form-wrap { padding: 1.5rem; }
+
+    /* Footer */
+    footer {
+      flex-direction: column;
+      gap: 0.4rem;
+      text-align: center;
+      padding: 1.5rem 5vw;
+    }
+  }
+
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">瑞生管理顾问</div>
+  <ul class="nav-links">
+    <li><a href="#about">关于老师</a></li>
+    <li><a href="#services">服务</a></li>
+    <li><a href="#photos">培训现场</a></li>
+    <li><a href="#testimonial">客户评价</a></li>
+    <li><a href="#contact">联系我们</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <div class="hero-eyebrow">
+      <span>ENTERPRISE MANAGEMENT CONSULTING</span>
+    </div>
+    <h1 class="hero-title">
+      专注企业成长<br>的<em>管理顾问</em>
+    </h1>
+    <p class="hero-subtitle">
+      专注管理培训与顾问咨询，赋能企业中高层管理者，
+      帮助组织打造高绩效团队，从"管事"走向"带人"，实现持续成长。
+    </p>
+    <div class="hero-cta">
+      <a href="#contact" class="btn-primary">预约咨询</a>
+      <a href="#services" class="btn-secondary">了解服务</a>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <img class="hero-img-main" src="https://res.cloudinary.com/dsm21sstq/image/upload/v1776646069/Ruisheng_wbs9xd.jpg" alt="黄瑞生老师" />
+    <img class="hero-img-accent" src="https://res.cloudinary.com/dsm21sstq/image/upload/v1776646593/stage_vihc20.jpg" alt="培训现场" />
+    <div class="hero-badge">20+ 年经验</div>
+    <div class="stat-float">
+      <span class="stat-num">300+</span>
+      <span class="stat-label">服务企业</span>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section style="background: var(--cream-dark); padding: 6rem 5vw;" id="about">
+  <div class="about-grid" style="max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.8fr; gap: 6rem; align-items: center;">
+    <div class="about-portrait" style="position: relative;">
+      <div style="
+        width: 100%;
+        aspect-ratio: 4/5;
+        overflow: hidden;
+      ">
+        <img
+          src="https://res.cloudinary.com/dsm21sstq/image/upload/v1776646069/Ruisheng_wbs9xd.jpg"
+          alt="黄瑞生老师"
+          style="width:100%; height:100%; object-fit:cover; object-position: top;"
+        />
+      </div>
+      <!-- decorative gold border offset -->
+      <div style="
+        position: absolute;
+        top: 16px; left: 16px;
+        width: 100%; height: 100%;
+        border: 2px solid var(--gold);
+        z-index: -1;
+        pointer-events: none;
+      "></div>
+      <!-- name card -->
+      <div style="
+        position: absolute;
+        bottom: -1.5rem; right: -1.5rem;
+        background: var(--ink);
+        color: var(--cream);
+        padding: 1rem 1.4rem;
+        min-width: 140px;
+      ">
+        <span style="font-family:'Noto Serif SC',serif; font-size:1.1rem; font-weight:700; display:block; letter-spacing:0.08em;">黄瑞生</span>
+        <span style="font-size:0.72rem; color:var(--gold-light); letter-spacing:0.12em; margin-top:0.3rem; display:block;">管理培训顾问</span>
+      </div>
+    </div>
+
+    <!-- Bio -->
+    <div>
+      <div class="section-label"><span>ABOUT</span></div>
+      <h2 class="section-title" style="margin-bottom: 1.8rem;">关于黄瑞生老师</h2>
+
+      <p style="font-size:1rem; color:var(--ink-mid); line-height:2; margin-bottom:1.2rem; font-weight:300;">
+        黄瑞生老师深耕企业管理培训领域逾二十年，长期服务于制造、工程、零售、金融等多个行业，
+        致力于帮助企业中高层管理者系统提升领导力、执行力与团队管理能力。
+      </p>
+      <p style="font-size:1rem; color:var(--ink-mid); line-height:2; margin-bottom:2rem; font-weight:300;">
+        其课程体系以"落地见效"为核心，将管理理论与实战场景深度融合，
+        强调学习力、执行力与复盘力三力并重，帮助企业从"培训"走向真正的"组织能力升级"。
+        多年来培训服务企业逾300家，学员遍布全国各地。
+      </p>
+
+      <!-- Highlights -->
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-bottom:2rem;">
+        <div style="border-left: 2px solid var(--gold); padding-left:1rem;">
+          <span style="font-family:'Noto Serif SC',serif; font-size:1.6rem; font-weight:700; color:var(--ink); display:block;">20年+</span>
+          <span style="font-size:0.78rem; color:var(--ink-light); letter-spacing:0.1em;">培训行业深耕</span>
+        </div>
+        <div style="border-left: 2px solid var(--gold); padding-left:1rem;">
+          <span style="font-family:'Noto Serif SC',serif; font-size:1.6rem; font-weight:700; color:var(--ink); display:block;">300+</span>
+          <span style="font-size:0.78rem; color:var(--ink-light); letter-spacing:0.1em;">服务企业</span>
+        </div>
+        <div style="border-left: 2px solid var(--gold); padding-left:1rem;">
+          <span style="font-family:'Noto Serif SC',serif; font-size:1.6rem; font-weight:700; color:var(--ink); display:block;">多行业</span>
+          <span style="font-size:0.78rem; color:var(--ink-light); letter-spacing:0.1em;">制造 · 工程 · 零售 · 金融</span>
+        </div>
+        <div style="border-left: 2px solid var(--gold); padding-left:1rem;">
+          <span style="font-family:'Noto Serif SC',serif; font-size:1.6rem; font-weight:700; color:var(--ink); display:block;">98%</span>
+          <span style="font-size:0.78rem; color:var(--ink-light); letter-spacing:0.1em;">客户满意度</span>
+        </div>
+      </div>
+
+      <!-- Tags -->
+      <div style="display:flex; flex-wrap:wrap; gap:0.6rem;">
+        <span style="padding:0.4rem 1rem; border:1px solid var(--gold); color:var(--gold); font-size:0.78rem; letter-spacing:0.1em;">领导力发展</span>
+        <span style="padding:0.4rem 1rem; border:1px solid var(--gold); color:var(--gold); font-size:0.78rem; letter-spacing:0.1em;">执行力提升</span>
+        <span style="padding:0.4rem 1rem; border:1px solid var(--gold); color:var(--gold); font-size:0.78rem; letter-spacing:0.1em;">团队效能</span>
+        <span style="padding:0.4rem 1rem; border:1px solid var(--gold); color:var(--gold); font-size:0.78rem; letter-spacing:0.1em;">绩效管理</span>
+        <span style="padding:0.4rem 1rem; border:1px solid var(--gold); color:var(--gold); font-size:0.78rem; letter-spacing:0.1em;">企业文化建设</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="services-inner">
+    <div class="services-head">
+      <div>
+        <div class="section-label"><span>CORE SERVICES</span></div>
+        <h2 class="section-title">核心服务</h2>
+      </div>
+      <p class="services-desc">
+        根据企业发展阶段与管理痛点，提供系统化、定制化的培训解决方案，
+        从课程设计到落地执行，帮助管理者提升综合素养，推动团队效能跃升。
+      </p>
+    </div>
+
+    <div class="services-grid">
+      <div class="service-card">
+        <span class="service-num">01</span>
+        <div class="service-icon-wrap">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>
+            <rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>
+          </svg>
+        </div>
+        <div class="service-name">企业内训定制</div>
+        <p class="service-text">
+          根据企业行业特性、发展阶段与管理痛点，定制专属培训方案，
+          涵盖团队管理、沟通协作、执行力提升、中层管理能力锻造等实战课程，
+          让培训内容贴合业务、落地见效。
+        </p>
+      </div>
+
+      <div class="service-card">
+        <span class="service-num">02</span>
+        <div class="service-icon-wrap">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+            <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
+          </svg>
+        </div>
+        <div class="service-name">管理者能力提升</div>
+        <p class="service-text">
+          面向企业中高层管理者，提供领导力、决策思维、目标管理、绩效管理、
+          团队激励等系统化训练，帮助管理者从"管事"转向"带人"，
+          提升综合管理素养。
+        </p>
+      </div>
+
+      <div class="service-card">
+        <span class="service-num">03</span>
+        <div class="service-icon-wrap">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+          </svg>
+        </div>
+        <div class="service-name">团队效能打造</div>
+        <p class="service-text">
+          围绕团队文化建设、沟通机制、执行力训练、冲突管理与凝聚力提升
+          展开专项培训，打造高效协同、目标一致、战斗力强的优秀团队。
+        </p>
+      </div>
+
+      <div class="service-card">
+        <span class="service-num">04</span>
+        <div class="service-icon-wrap">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/>
+            <path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/>
+          </svg>
+        </div>
+        <div class="service-name">公开课 / 专题讲座</div>
+        <p class="service-text">
+          开设通用管理类公开课程与主题分享，内容涵盖职场沟通、时间管理、
+          高绩效团队打造、企业文化建设等，为个人与组织提供轻量化学习提升路径。
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PHOTOS -->
+<section class="photos-section" id="photos">
+  <div class="photos-inner">
+    <div class="photos-head">
+      <div class="section-label"><span>TRAINING MOMENTS</span></div>
+      <h2 class="section-title">培训现场</h2>
+    </div>
+
+    <div class="photos-grid-outer">
+      <!-- Row 1: Ruisheng (tall portrait) left + Stage + Lecture stacked right -->
+      <div style="display:grid; grid-template-columns: 1fr 1.6fr; gap: 6px; margin-bottom: 6px;">
+        <div class="photo-wrap" style="height: 420px;">
+          <img src="https://res.cloudinary.com/dsm21sstq/image/upload/v1776646069/Ruisheng_wbs9xd.jpg" alt="黄瑞生老师" style="width:100%;height:100%;object-fit:cover;object-position:top;" />
+          <div class="photo-caption">黄瑞生老师 · 授课现场</div>
+        </div>
+        <div style="display:grid; grid-template-rows: 1fr 1fr; gap: 6px; height: 420px;">
+          <div class="photo-wrap">
+            <img src="https://res.cloudinary.com/dsm21sstq/image/upload/v1776646593/stage_vihc20.jpg" alt="培训舞台" style="width:100%;height:100%;object-fit:cover;" />
+            <div class="photo-caption">大型培训现场</div>
+          </div>
+          <div class="photo-wrap">
+            <img src="https://res.cloudinary.com/dsm21sstq/image/upload/v1776646593/lecture_robd5t.jpg" alt="学员专注" style="width:100%;height:100%;object-fit:cover;" />
+            <div class="photo-caption">学员专注投入</div>
+          </div>
+        </div>
+      </div>
+      <!-- Row 2: Group photo full width -->
+      <div class="photo-wrap" style="height: 220px;">
+        <img src="https://res.cloudinary.com/dsm21sstq/image/upload/v1776646593/group_ddksz1.png" alt="团队合影" style="width:100%;height:100%;object-fit:cover;object-position:center 30%;" />
+        <div class="photo-caption">结业合影留念</div>
+      </div>
+    </div><!-- /photos-grid-outer -->
+  </div>
+</section>
+
+<!-- VIDEO -->
+<section class="video-section" style="background: var(--white); padding: 5rem 5vw;">
+  <div style="max-width: 900px; margin: 0 auto;">
+    <div class="section-label"><span>TRAINING VIDEO</span></div>
+    <h2 class="section-title" style="margin-bottom: 2.5rem;">培训视频</h2>
+    <div style="position: relative; width: 100%; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+      <iframe
+        src="https://player.bilibili.com/player.html?bvid=BV161owBUEzj&autoplay=0&high_quality=1"
+        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;"
+        allowfullscreen
+        scrolling="no"
+        frameborder="0">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIAL -->
+<section class="testimonial-section" id="testimonial">
+  <div class="testimonial-inner">
+    <div class="section-label">
+      <span>CLIENT FEEDBACK</span>
+    </div>
+    <h2 class="section-title">客户评价</h2>
+
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <span class="quote-mark">&ldquo;</span>
+        <p class="quote-text">
+          黄老师的讲授既有扎心的现实叩问，也有温暖的共生启迪，更有清晰的方法指引。
+          培训内容非常落地，不是泛泛而谈——每一个工具都能直接用在工作中，
+          让我对个人成长、专业修炼与团队共生有了系统的理解。
+        </p>
+        <div class="quote-author">
+          <div class="author-dot"></div>
+          <div class="author-info">
+            <strong>周靖达</strong>
+            <span>工程监理 · 企业十五周年专题培训</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <span class="quote-mark">&ldquo;</span>
+        <p class="quote-text">
+          此次培训是一场思想的洗礼与认知的重塑。黄老师的课程既有行业大势的高屋建瓴，
+          又有岗位实操的落地指导，更有职业精神的深刻叩问，
+          让我深受触动，明确了成长的方向与前行的力量。
+        </p>
+        <div class="quote-author">
+          <div class="author-dot"></div>
+          <div class="author-info">
+            <strong>林辉鸿</strong>
+            <span>工程监理 · 行业专题培训</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="results-strip">
+      <div class="result-item">
+        <span class="result-num">300+</span>
+        <span class="result-desc">服务企业</span>
+      </div>
+      <div class="result-item">
+        <span class="result-num">20年+</span>
+        <span class="result-desc">行业深耕</span>
+      </div>
+      <div class="result-item">
+        <span class="result-num">98%</span>
+        <span class="result-desc">客户满意度</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="contact-inner">
+    <div class="contact-info">
+      <div class="section-label"><span>GET IN TOUCH</span></div>
+      <h2 class="section-title">预约咨询</h2>
+      <p>
+        欢迎留下您的信息，黄瑞生老师将亲自与您沟通，
+        了解企业现状与培训需求，为您提供专属方案建议。
+      </p>
+      <ul class="contact-details">
+        <li>
+          <span class="detail-label">电话</span>
+          <span>+86 138 XXXX XXXX</span>
+        </li>
+        <li>
+          <span class="detail-label">微信</span>
+          <span>ruisheng_mgmt</span>
+        </li>
+        <li>
+          <span class="detail-label">邮件</span>
+          <span>info@ruisheng-consult.com</span>
+        </li>
+        <li>
+          <span class="detail-label">地区</span>
+          <span>全国服务，可线上或赴企驻场</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="contact-form-wrap">
+      <div class="form-title">填写预约信息</div>
+      <div class="form-group">
+        <label>您的姓名</label>
+        <input type="text" placeholder="请输入姓名" />
+      </div>
+      <div class="form-group">
+        <label>联系电话</label>
+        <input type="tel" placeholder="请输入手机号" />
+      </div>
+      <div class="form-group">
+        <label>企业名称</label>
+        <input type="text" placeholder="请输入企业名称" />
+      </div>
+      <div class="form-group">
+        <label>咨询需求</label>
+        <select>
+          <option value="">请选择服务类型</option>
+          <option>顾问咨询</option>
+          <option>企业培训</option>
+          <option>持续陪跑</option>
+          <option>其他需求</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>补充说明（选填）</label>
+        <textarea placeholder="请简单描述您的企业现状或培训需求…"></textarea>
+      </div>
+      <button class="btn-submit">提交预约</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">瑞生管理顾问</div>
+  <div class="footer-copy">© 2024 瑞生管理顾问  ·  专注企业成长</div>
+</footer>
+
+<script>
+  document.querySelector('.btn-submit').addEventListener('click', function() {
+    this.textContent = '已提交 ✓';
+    this.style.background = '#b07d3a';
+    setTimeout(() => {
+      this.textContent = '提交预约';
+      this.style.background = '';
+    }, 3000);
+  });
+
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const el = document.querySelector(a.getAttribute('href'));
+      if (el) {
+        e.preventDefault();
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+</script>
+<!-- MOBILE BOTTOM CTA BAR -->
+<div class="mobile-cta-bar">
+  <a href="#contact" class="m-btn-primary">预约咨询</a>
+  <a href="tel:+8613800000000" class="m-btn-secondary">电话联系</a>
+</div>
+
+</body>
+</html>
